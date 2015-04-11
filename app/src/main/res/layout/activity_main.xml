@@ -76,7 +76,17 @@
                 android:src="@drawable/santino"
                 android:onClick="playSound" />
 
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnShare"
+                android:layout_gravity="right"
+                android:src="@drawable/abc_spinner_ab_focused_holo_light"
+                android:onClick="playSound"
+                android:clickable="false" />
+
         </TableRow>
+
     </LinearLayout>
 
 </RelativeLayout>
