@@ -28,23 +28,16 @@ SoundManager sound;
 
         setContentView(R.layout.activity_main);
 
-
-
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
-
         Intent intent = getIntent();
-      // Bundle extras = intent.getExtras();
+
         if(intent!=null)
         {
             playSoundS();
         }
 
-      /* if (extras != null) {
-            mAppWidgetId = extras.getInt(
-                    AppWidgetManager.EXTRA_APPWIDGET_ID,
-                    AppWidgetManager.INVALID_APPWIDGET_ID);
-           }*/
+
 
     }
     public void  playSoundS(){
