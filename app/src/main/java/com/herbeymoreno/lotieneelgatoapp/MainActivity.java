@@ -1,5 +1,7 @@
 package com.herbeymoreno.lotieneelgatoapp;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
@@ -9,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.media.AudioManager;
 import android.content.Intent;
+import android.widget.Button;
+import android.widget.Toast;
 
 
 import java.io.File;
@@ -18,6 +22,7 @@ import java.io.InputStream;
 
 public class MainActivity extends ActionBarActivity {
 
+    boolean share = false;
 SoundManager sound;
     int Carisaurio,Gato,Huron,PinchiGato,Santino;
 
@@ -26,9 +31,6 @@ SoundManager sound;
         super.onCreate(savedInstanceState);
         sound = new SoundManager(getApplicationContext());
         loadSounds();
-        if(sound.Empty()){
-        loadSounds();
-        }
 
         setContentView(R.layout.activity_main);
 
@@ -50,17 +52,7 @@ SoundManager sound;
             }
         }
 
-
-
     }
-    public void ShareSound(View view){
-        String path = Environment.getExternalStorageDirectory() + "/LoTieneElGatoSounds";
-        File audio = new File(path+"/0.ogg");
-        Intent intent = new Intent(Intent.ACTION_SEND).setType("audio/*");
-        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(audio));
-        startActivity(Intent.createChooser(intent, "LoTieneElGatoAPP"));
-    }
-
 
     public void  playSound(View view){
 
@@ -68,22 +60,48 @@ SoundManager sound;
         switch (id)
         {
             case R.id.btnHuron:
-                sound.play(Huron);
+                if(share){
+                    ShareSound(0);}
+                else{
+                sound.play(Huron);}
                 break;
             case R.id.btnCarisaurio:
-                sound.play(Carisaurio);
+                if(share){
+                    ShareSound(1);}
+                else{
+                sound.play(Carisaurio);}
                 break;
             case R.id.btnGato:
+                if(share){
+                    ShareSound(2);
+                }
+                else{
                 sound.play(Gato);
+                }
                 break;
             case R.id.btnSantino:
-                sound.play(Santino);
+                if(share){
+                    ShareSound(3);
+                }
+            else{
+                sound.play(Santino);}
                 break;
             case R.id.btnPinchiGato:
+                if(share){
+                    ShareSound(4);
+                }
+                else{
                 sound.play(PinchiGato);
+                }
                 break;
             case R.id.btnShare:
-                ShareSound(view);
+                share = true;
+                Context context = getApplicationContext();
+                CharSequence text = "Preciona un sonido para enviar.";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
                 break;
         }
     }
@@ -95,6 +113,16 @@ SoundManager sound;
         Huron = sound.load(R.raw.huron);
         Carisaurio = sound.load(R.raw.carisaurio);
     }
+
+    public void ShareSound(int sound){
+        String path = Environment.getExternalStorageDirectory() + "/LoTieneElGatoSounds";
+        File audio = new File(path+"/"+sound+".ogg");
+        Intent intent = new Intent(Intent.ACTION_SEND).setType("audio/*");
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(audio));
+        startActivity(Intent.createChooser(intent, "LoTieneElGatoAPP"));
+        share = false;
+    }
+
 
 
     @Override
