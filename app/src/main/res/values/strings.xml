@@ -4,6 +4,6 @@
     <string name="app_name">LoTieneElGatoAPP</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_activity_share">ActivityShare</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="nameText">LoTieneElGato</string>
 
 </resources>
