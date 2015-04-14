@@ -24,7 +24,7 @@ public class MainActivity extends ActionBarActivity {
 
     boolean share = false;
 SoundManager sound;
-    int Carisaurio,Gato,Huron,PinchiGato,Santino;
+    int Carisaurio,Gato,Huron,PinchiGato,Santino,Matraca,Nachas,CosaSeria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ SoundManager sound;
 
         Intent intent = getIntent();
 
-        final int[] mSongs = new int[] { R.raw.huron, R.raw.carisaurio, R.raw.gato,R.raw.santino,R.raw.pinchigato };
+        final int[] mSongs = new int[] { R.raw.huron, R.raw.carisaurio, R.raw.gato,R.raw.santino,R.raw.pinchigato,R.raw.matracasi,R.raw.nachas,R.raw.cosaseria };
         for (int i = 0; i < mSongs.length; i++) {
             try {
                 String path = Environment.getExternalStorageDirectory() + "/LoTieneElGatoSounds";
@@ -94,6 +94,30 @@ SoundManager sound;
                 sound.play(PinchiGato);
                 }
                 break;
+            case R.id.btnMatracasi:
+                if(share){
+                    ShareSound(5);
+                }
+                else{
+                    sound.play(Matraca);
+                }
+                break;
+            case R.id.btnNachas:
+                if(share){
+                    ShareSound(6);
+                }
+                else{
+                    sound.play(Nachas);
+                }
+                break;
+            case R.id.btnCosaSeria:
+                if(share){
+                    ShareSound(7);
+                }
+                else{
+                    sound.play(CosaSeria);
+                }
+                break;
             case R.id.btnShare:
                 share = true;
                 Context context = getApplicationContext();
@@ -112,6 +136,9 @@ SoundManager sound;
         Santino = sound.load(R.raw.santino);
         Huron = sound.load(R.raw.huron);
         Carisaurio = sound.load(R.raw.carisaurio);
+        Matraca = sound.load(R.raw.matracasi);
+        Nachas = sound.load(R.raw.nachas);
+        CosaSeria = sound.load(R.raw.cosaseria);
     }
 
     public void ShareSound(int sound){
@@ -125,12 +152,12 @@ SoundManager sound;
 
 
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

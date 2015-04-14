@@ -15,7 +15,7 @@ public class SoundManager {
     private float rightVolume = 1.0f;
 
     SoundManager sound;
-    int Carisaurio,Gato,Huron,PinchiGato,Santino;
+    int Carisaurio,Gato,Huron,PinchiGato,Santino,Matraca;
 
     public SoundManager(Context appContext){
         sndPool = new SoundPool(1, AudioManager.STREAM_MUSIC,100);
